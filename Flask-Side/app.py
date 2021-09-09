@@ -7,7 +7,7 @@ from resources.home import Home
 
 
 app = Flask(__name__)
-api = Api(app)
+api = Api(app=app)
 CORS(app)
 
 
