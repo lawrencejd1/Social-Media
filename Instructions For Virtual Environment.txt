@@ -1,0 +1,34 @@
+We all need to create our own virtual environment due to file paths, git, etc.
+
+In order to have your own python environment for this project, follow these instructions.
+
+STEPS:
+
+1. Open the Social-Media folder in Visual Studio Code
+
+2. Goto Terminal>New Terminal
+
+3. In the terminal below make sure the directory is something like this (may be different for mac, just make sure your in the social media folder)
+    C:\Users\<your name>\Documents\GitHub\Social-Media>
+
+4. Create a python virtual environment
+    Copy one of the following into the terminal
+
+    python3 -m venv venv
+
+5. You should have a new folder named "venv", this means you have created your virtual environment, but were not done yet.
+
+6. In visual studio code, if a notification pops up asking if you want to use the new interpreter, click yes.
+    -If not, on the bottom left it may say "Select python interpreter" or "Python 3.6", click it and navigate into
+        -venv/scripts folder on Windows and select the python file
+        -venv/bin folder and select the python file
+
+7. It should show on the bottom left "Python 3.x.x ('venv': venv)"
+
+8. Exit out/ click the trash icon of the terminal window and open a new once
+
+9. The new terminal should have green letters now that says (venv)
+
+10. Finally, copy and paste in 'pip install -r requirements.txt' without the single quotes
+
+11. Install Node.js
