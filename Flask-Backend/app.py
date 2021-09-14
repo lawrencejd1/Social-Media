@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, Blueprint
 from flask_restful import Api
 from flask_cors import CORS
 
@@ -7,11 +7,14 @@ from resources.home import Home
 
 
 app = Flask(__name__)
-api = Api(app=app)
+app_bp = Blueprint('api', __name__)
+api = Api(app_bp)
 CORS(app)
 
 
 api.add_resource(Home, '/', '/home')
 
 if __name__ == '__main__':
-    app.run(port=5002, debug=True)
+    app.register_blueprint(app_bp)
+    app.run(port=5000, debug=True)
+    
