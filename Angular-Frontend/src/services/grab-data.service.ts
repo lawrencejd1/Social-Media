@@ -14,4 +14,6 @@ export class GrabDataService {
     return this.http.get(this.apiUrl + page)
   }
 
+  
+
 }
