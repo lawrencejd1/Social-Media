@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(private backend: GrabDataService) {}
 
   ngOnInit(): void {
-    this.backend.getPageData('/home').subscribe(req => {
+    this.backend.initPageData('/home').subscribe(req => {
       let data:any = req;
       this.title = data.title
       this.body = data.body;

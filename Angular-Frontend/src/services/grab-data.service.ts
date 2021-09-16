@@ -10,7 +10,7 @@ export class GrabDataService {
 
   apiUrl = 'http://127.0.0.1:5000'
 
-  getPageData(page:string){
+  initPageData(page:string){
     return this.http.get(this.apiUrl + page)
   }
 
