@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<form method="post">
+    <p>
+        userID:
+        <input type="text" name="username">
+        <br>
+        First Name:
+        <input type="text" name="first_name">
+        <br>
+        Last Name:
+        <input type="text" name="last_name">
+        <br>
+        email (must end with @students.ccu.edu):
+        <input type="text" name="email">
+        <br>
+        password:
+        <input type="text" name="password">
+    </p>
+    <button type="submit">Create</button>
+</form>
+{% endblock %}
