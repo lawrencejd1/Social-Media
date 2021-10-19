@@ -9,9 +9,11 @@ def create_app():
     app = Flask(__name__)
 
     app.config['SECRET_KEY'] = '˙c<??|1#?##?G'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+    app.config['Cougagram'] = 'DESKTOP-CR51903\SQLEXPRESS'
 
     db.init_app(app)
+
+    import auth
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
