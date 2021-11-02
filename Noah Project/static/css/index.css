@@ -13,7 +13,7 @@ body {
     color:black;
     /*background-color: rgb(100, 140, 255) !important;*/
 
-    background: url('/static/images/blue_ccu_g&t.jpg') no-repeat center center fixed;
+    background: url('/static/images/blue_ccu_g&t.jpg') repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -33,6 +33,7 @@ body {
     z-index: -100;
 
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     background-color: rgba(100, 140, 255, 0.5);
 }
 
