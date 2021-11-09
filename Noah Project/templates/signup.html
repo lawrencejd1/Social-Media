@@ -7,6 +7,18 @@
 
         <form class="form text-center" method="POST" action="/signup">
 
+            {% if userExists %}
+            <div class="alert alert-danger" role="alert">
+                Email already exists. Please try again.
+              </div>
+            {% endif %}
+
+            {% if isStudent == False %}
+            <div class="alert alert-danger" role="alert">
+                You must sign up with a '@students.ccu.edu' email in order to sign up.
+              </div>
+            {% endif %}
+
             <h3 class="display-4 text-center">Sign Up</h3>
 
             <div class="form-group">
