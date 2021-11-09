@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask.wrappers import Response
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
 from .models import User
@@ -6,25 +7,34 @@ from . import db
 
 auth = Blueprint('auth', __name__)
 
-incorrect_login = False
 
 @auth.route('/signup')
 def signup():
-    return render_template('signup.html')
+    return render_template('signup.html', userExists=None, isStudent=None)
 
 @auth.route('/signup', methods=['POST'])
 def signup_post():
+
+    isStudent = True
+    userExists = False
+
     email = request.form.get('email')
     username = request.form.get('username')
     firstname = request.form.get('firstName')
     lastname = request.form.get('lastName')
     password = request.form.get('password')
 
+    if('@students.ccu.edu' in email):
+        isStudent = True
+    else:
+        isStudent = False
+        return render_template('signup.html', userExists=userExists, isStudent=isStudent)
+
     user = User.query.filter_by(email=email).first() # if this returns a user, then the email already exists in database
 
     if user: # if a user is found, we want to redirect back to signup page so user can try again
-        flash('Email address already exists')
-        return redirect(url_for('auth.signup'))
+        userExists = True
+        return render_template('signup.html', userExists=userExists, isStudent=isStudent)
 
     # create a new user with the form data. Hash the password so the plaintext version isn't saved.
     new_user = User(email=email, firstname=firstname, lastname=lastname, username=username, password=generate_password_hash(password, method='sha256'))
@@ -37,12 +47,12 @@ def signup_post():
 
 @auth.route('/login')
 def login():
-    return render_template('login.html', incorrect_login=incorrect_login)
+    return render_template('login.html', invalid_login=None)
 
 @auth.route('/login', methods=['POST'])
 def login_post():
 
-    global incorrect_login
+    invalid_login = False
 
     email = request.form.get('email')
     password = request.form.get('password')
@@ -53,16 +63,14 @@ def login_post():
     # check if the user actually exists
     # take the user-supplied password, hash it, and compare it to the hashed password in the database
     if not user or not check_password_hash(user.password, password):
-        incorrect_login = True
-        return redirect(url_for('auth.login')) # if the user doesn't exist or password is wrong, reload the page
+        invalid_login = True
+        return render_template('login.html', invalid_login=invalid_login) # if the user doesn't exist or password is wrong, reload the page
 
     # if the above check passes, then we know the user has the right credentials
-    if not incorrect_login:
-        login_user(user, remember=remember)
+    
+    login_user(user, remember=remember)
 
-        incorrect_login = False
-
-        return redirect(url_for('main.profile'))
+    return redirect(url_for('main.profile'))
 
 @auth.route('/logout')
 @login_required
