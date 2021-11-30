@@ -23,6 +23,9 @@ def signup_post():
     firstname = request.form.get('firstName')
     lastname = request.form.get('lastName')
     password = request.form.get('password')
+    major = request.form.get('major')
+    grad_year = request.form.get('grad_year')
+    birthday = request.form.get('birthday')
 
     if('@students.ccu.edu' in email):
         isStudent = True
@@ -37,7 +40,8 @@ def signup_post():
         return render_template('signup.html', userExists=userExists, isStudent=isStudent)
 
     # create a new user with the form data. Hash the password so the plaintext version isn't saved.
-    new_user = User(email=email, firstname=firstname, lastname=lastname, username=username, password=generate_password_hash(password, method='sha256'))
+    new_user = User(email=email, firstname=firstname, lastname=lastname, username=username, password=generate_password_hash(password, method='sha256'), 
+                    major=major, grad_year=grad_year, birthday=birthday)
 
     # add the new user to the database
     db.session.add(new_user)

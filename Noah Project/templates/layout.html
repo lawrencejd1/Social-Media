@@ -51,6 +51,13 @@
                             Profile
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="{{ url_for('main.addPost') }}" class="nav-link lead">
+                            Add Post
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a href="{{ url_for('auth.logout') }}" class="nav-link lead">
                             Logout
@@ -63,7 +70,7 @@
     </nav>
 
     <div id="background"></div>
-    <div class="container mainDiv">
+    <div class="mainDiv mb-5">
     {% block content%} {% endblock %}
     </div>
 

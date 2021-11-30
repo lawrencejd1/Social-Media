@@ -8,10 +8,15 @@ db = SQLAlchemy()
 
 
 def create_app():
+
+    UPLOAD_FOLDER = './static/uploads'
+    # ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+
     app = Flask(__name__)
 
     app.config['SECRET_KEY'] = '˙c<??|1#?##?G'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
     db.init_app(app)
 

@@ -2,11 +2,55 @@
 
 {% block content %}
 
-<div class="profileContainer">
-    <h1 class="title text-center">
-      Welcome, <span class="yellowText">{{ name }}</span>!
-    </h1>
+<div class="mb-5" id="profileContainer">
+
+  <div class="mb-5">
+
+    <div class="mx-auto p-3" id="mainProfileContainer">
+
+      <div class="row justify-content-center">
+        <img class="profileImage" src="../static/images/blank_profile_picture.png\" alt="Profile Picture">
+      </div>
+      <div class="row justify-content-center">
+        <h5>@{{user.username}}</h1>
+      </div>
+      <div class="row justify-content-center mt-2">
+        <h1>{{user.firstname}} {{user.lastname}}</h1>
+      </div>
+
+      <div class="row justify-content-center mt-2">
+        <p1>I love CCU!!!!!</h1>
+      </div>
+
+    </div>
   </div>
+
+
+  <div class="allPosts">
+
+
+    {% for i in range(5) %}
+    <div class="post mx-auto mt-5 pt-3">
+
+      <div class="row justify-content-center mt-5">
+        <img class="postImage" src="../static/images/blue_ccu_g&t.jpg" alt="">
+      </div>
+
+      <div class="row justify-content-center  mt-2">
+        <h5>@{{user.username}}</h5>
+      </div>
+
+      <div class="row justify-content-center mt-5">
+        <h5>This is my first post!</h5>
+      </div>
+
+    </div>
+
+    {% endfor %}
+
+
+  </div>
+
 </div>
 
 {% endblock %}

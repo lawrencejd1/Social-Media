@@ -2,16 +2,65 @@
 
 {% block content %}
 <div class="indexContainer">
-    <div class="row justify-content-center">
-      <h1 class="display-5">
-        WELCOME TO <span class=yellowText>COUGAGRAM</span> !
-      </h1>
+  <div class="row justify-content-center">
+    <h1 id="welcomeText" class="display-5">
+      WELCOME TO <span class=yellowText>COUGAGRAM</span> !
+    </h1>
+  </div>
+
+  {% if not current_user.is_authenticated %}
+  <div class="row justify-content-center">
+    <h2 class="lead">
+      Please <span class="yellowText">Login</span> or <span class="yellowText">Signup</span> to continue to the site!
+    </h2>
+  </div>
+  {% endif %}
+
+  {% if current_user.is_authenticated %}
+  <div class="allPosts">
+
+    {% for post in posts %}
+
+    <div class="post mx-auto mt-5 pt-3">
+
+      <div class="row imageDiv justify-content-center mt-5">
+
+        <img class="postImage" src='{{ url_for('static', filename='uploads/' + post.image) }}' alt="">
+
+      </div>
+
+      <div class="row justify-content-center  mt-2">
+        <h5>@{{post.username}}</h5>
+      </div>
+
+      <div class="row justify-content-center mt-5">
+        <h5>{{post.caption}}</h5>
+      </div>
+
+    </div>
+    {% endfor %}
+
+  {% for i in range(5) %}
+  <div class="post mx-auto mt-5 pt-3">
+
+    <div class="row justify-content-center mt-5">
+      <img class="postImage" src="../static/images/blue_ccu_g&t.jpg" alt="">
     </div>
 
-    <div class="row justify-content-center">
-      <h2 class="lead">
-        Please <span class="yellowText">Login</span> or <span class="yellowText">Signup</span> to continue to the site!
-      </h2>
+    <div class="row justify-content-center  mt-2">
+      <h5>@TheRealandActualCCU</h5>
     </div>
+
+    <div class="row justify-content-center mt-5">
+      <h5>This is my first post!</h5>
+    </div>
+
   </div>
+
+  {% endfor %}
+</div>
+
+</div>
+{% endif %}
+</div>
 {% endblock %}
